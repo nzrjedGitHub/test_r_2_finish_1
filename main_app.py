@@ -142,7 +142,7 @@ class CheckSits(Screen):
         outer.add_widget(self.btn)
         self.add_widget(outer)
 
-    def run_finished(self):
+    def run_finished(self, instance, value):
        self.btn.set_disabled(False)
        self.btn.text = 'Продовжити'
        self.next_screen = True
