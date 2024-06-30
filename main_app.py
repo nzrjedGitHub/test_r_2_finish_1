@@ -15,6 +15,8 @@ from runner import Runner
 from sits import Sits
 from ruffier import test
 
+#20 #35 #25
+
 age = 7
 name = ""
 p1, p2, p3 = 0, 0, 0
@@ -187,7 +189,7 @@ class PulseScr2(Screen):
         self.in_result2.set_disabled(True)#
 
         self.btn = Button(
-            text="Завершити", size_hint=(0.3, 0.2), pos_hint={"center_x": 0.5}
+            text="Почати", size_hint=(0.3, 0.2), pos_hint={"center_x": 0.5}
         )
         self.btn.on_press = self.next
         outer = BoxLayout(orientation="vertical", padding=8, spacing=8)
@@ -233,12 +235,16 @@ class PulseScr2(Screen):
                 self.manager.current = "result"
 
 class Result(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.outer = BoxLayout(orientation="vertical", padding=8, spacing=8)
-        self.instr = Label(text="place for results")
-        self.outer.add_widget(self.instr)
-        self.add_widget(self.outer)
+   def __init__(self, **kwargs):
+      super().__init__(**kwargs)
+      self.outer = BoxLayout(orientation='vertical', padding=8, spacing=8)
+      self.instr = Label(text = '')
+      self.outer.add_widget(self.instr)
+      self.add_widget(self.outer)
+      self.on_enter = self.before
+   def before(self):
+      global name
+      self.instr.text = name + '\n' + test(p1, p2, p3, age)
 
 class HeartCheck(App):
     def build(self):
